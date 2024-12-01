@@ -5,7 +5,12 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "tsc",
-    "dev": "ts-node-dev server.ts"
+    "dev": "ts-node-dev --respawn server.ts",
+    "lint": "eslint . --ext .ts",
+    "test": "jest",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",

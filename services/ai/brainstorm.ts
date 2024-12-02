@@ -13,10 +13,13 @@ export async function generateBrainstormQuestions(params: BrainstormRequest): Pr
         ? params.texts
         : [];
 
-    const prompt = `Given these elements: ${textsArray.join('\n')}\n` +
-                  `And this context: ${params.image ? 'Image provided' : 'No image'}\n` +
-                  `Theme: ${params.theme || 'default'}\n` +
-                  `Generate 3 thought-provoking questions about the design`;
+    const prompt = `The whiteboard contains the following elements:\n` +
+               `${textsArray.join('\n')}\n` +
+               `The content is related to business planning or logic. For example, if the whiteboard contains a diagram labeled "Marketing Plan," the questions could be:\n` +
+               `1. What are our target customer segments?\n` +
+               `2. What channels will maximize reach?\n` +
+               `Based on the provided content, generate 3 to 5 questions that would help brainstorm or expand on the ideas presented.`;
+
     
     const result = await model.generateContent(prompt);
     const response = await result.response;
